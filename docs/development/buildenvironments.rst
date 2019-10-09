@@ -8,6 +8,8 @@ which is an image with the minimum necessary components required to build
 documentation. Virtual machines are limiting in CPU time and memory, which aims
 to reduce excessive usage of build resources.
 
+.. _build environments setup:
+
 Setup
 -----
 

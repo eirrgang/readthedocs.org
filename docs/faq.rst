@@ -93,6 +93,39 @@ If such libraries are installed via ``setup.py``, you also will need to remove a
 
 .. _autodoc_mock_imports: http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#confval-autodoc_mock_imports
 
+Why can't RTD build my C/C++ extension?
+---------------------------------------
+
+Packages with compiled extension modules can be built by RTD, but you may need
+to account for some details in your package build system.
+
+.. seealso:: :ref:`builds build environment`
+
+Python developer tools
+~~~~~~~~~~~~~~~~~~~~~~
+
+Common techniques to find the Python library and headers from the current
+Python interpreter may not be robust enough in the RTD environment to find the
+actual root of the Python installation.
+
+For example, the CMake commands ``find_package(PythonInterp)`` and
+``find_package(PythonLibs)`` will probably fail to find the Python developer
+tools. However, CMake versions 3.12 and higher have a new set of tools, and
+```find_package (Python COMPONENTS Interpreter Development)``
+<https://cmake.org/cmake/help/v3.12/module/FindPython.html>` may be more effective.
+
+In addition to the environment variables described at
+:ref:`builds build environment`,
+the :ref:`build environment <build environments setup>` may set additional
+environment variables in its
+:ref:`Dockerfile <https://github.com/readthedocs/readthedocs-docker-images>`,
+but since they are not officially documented, you should use them at your own risk.
+
+To test the robustness of your package's build logic,
+try building your package in a Python virtual environment
+created from a Python installation managed by `pyenv <https://github.com/pyenv/pyenv>`.
+If it can handle that, it should work on RTD as well.
+
 `Client Error 401` when building documentation
 ----------------------------------------------
 

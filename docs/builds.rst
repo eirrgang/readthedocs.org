@@ -169,6 +169,8 @@ Deleting a stale or broken build environment
 
 If you're having trouble getting your version to build, try wiping out the existing build/environment files.  On your version list page ``/projects/[project]/versions`` there is a "Wipe" button that will remove all of the files associated with your documentation build, but not the documentation itself.
 
+.. _builds build environment:
+
 Build environment
 -----------------
 
